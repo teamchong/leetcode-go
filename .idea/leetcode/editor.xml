@@ -47,6 +47,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/editor/en/[271]Encode and Decode Strings.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/editor/en/doc/content/[271]Encode and Decode Strings.md" />
+              <option name="frontendQuestionId" value="leetcode.com271" />
+              <option name="host" value="leetcode.com" />
+              <option name="path" value="$PROJECT_DIR$/editor/en/[271]Encode and Decode Strings.go" />
+              <option name="titleSlug" value="encode-and-decode-strings" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/editor/en/[347]Top K Frequent Elements.go">
           <value>
             <LeetcodeEditor>
