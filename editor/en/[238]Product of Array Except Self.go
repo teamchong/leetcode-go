@@ -38,11 +38,11 @@ func productExceptSelf(nums []int) []int {
 	answer := make([]int, length)
 	answer[0] = 1
 	for i := 1; i < length; i++ {
-		answer[i] = nums[i-1] * answer[i-1]
+		answer[i] = answer[i-1] * nums[i-1]
 	}
 
-	r := 1
-	for i := length - 1; i >= 0; i-- {
+	r := nums[length-1]
+	for i := length - 2; i >= 0; i-- {
 		answer[i] *= r
 		r *= nums[i]
 	}
