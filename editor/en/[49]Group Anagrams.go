@@ -27,28 +27,29 @@
 
 package main
 
+//leetcode submit region begin(Prohibit modification and deletion)
 import "sort"
 
-//leetcode submit region begin(Prohibit modification and deletion)
 func groupAnagrams(strs []string) [][]string {
 	sortedToGroup := make(map[string][]string, len(strs))
 	for _, str := range strs {
-		sortedStr := sortString(str)
-		sortedToGroup[sortedStr] = append(sortedToGroup[sortedStr], str)
+		runes := sortRunes(str)
+		sort.Sort(runes)
+		sortedStr := string(runes)
+		vals := sortedToGroup[sortedStr]
+		sortedToGroup[sortedStr] = append(vals, str)
 	}
-	groups := make([][]string, 0)
+	groups := make([][]string, 0, len(sortedToGroup))
 	for _, group := range sortedToGroup {
 		groups = append(groups, group)
 	}
 	return groups
 }
 
-func sortString(str string) string {
-	runes := []rune(str)
-	sort.Slice(runes, func(i, j int) bool {
-		return runes[i] < runes[j]
-	})
-	return string(runes)
-}
+type sortRunes []rune
+
+func (s sortRunes) Len() int           { return len(s) }
+func (s sortRunes) Less(i, j int) bool { return s[i] > s[j] }
+func (s sortRunes) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 
 //leetcode submit region end(Prohibit modification and deletion)

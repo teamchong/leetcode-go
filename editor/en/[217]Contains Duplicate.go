@@ -25,7 +25,7 @@ package main
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func containsDuplicate(nums []int) bool {
-	numToTrue := make(map[int]bool)
+	numToTrue := make(map[int]bool, len(nums))
 	for _, num := range nums {
 		if numToTrue[num] {
 			return true

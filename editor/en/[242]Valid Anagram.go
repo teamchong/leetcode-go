@@ -29,19 +29,20 @@ package main
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func isAnagram(s string, t string) bool {
-	if len(s) != len(t) {
+	if sLen := len(s); sLen != len(t) {
 		return false
-	}
-	chToFreq := make(map[rune]int)
-	for _, ch := range s {
-		chToFreq[ch]++
-	}
-	for _, ch := range t {
-		if chToFreq[ch]--; chToFreq[ch] < 0 {
-			return false
+	} else {
+		chToFreq := make(map[rune]int, sLen)
+		for _, ch := range s {
+			chToFreq[ch]++
 		}
+		for _, ch := range t {
+			if chToFreq[ch]--; chToFreq[ch] < 0 {
+				return false
+			}
+		}
+		return true
 	}
-	return true
 }
 
 //leetcode submit region end(Prohibit modification and deletion)

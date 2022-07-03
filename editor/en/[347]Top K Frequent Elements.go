@@ -26,11 +26,11 @@
 
 package main
 
+//leetcode submit region begin(Prohibit modification and deletion)
 import "container/heap"
 
-//leetcode submit region begin(Prohibit modification and deletion)
 func topKFrequent(nums []int, k int) []int {
-	numToFreq := make(map[int]int)
+	numToFreq := make(map[int]int, len(nums))
 	for _, num := range nums {
 		numToFreq[num]++
 	}
@@ -40,7 +40,7 @@ func topKFrequent(nums []int, k int) []int {
 	for num, freq := range numToFreq {
 		heap.Push(f, NumFreq{num, freq})
 	}
-	mostFrequent := make([]int, 0)
+	mostFrequent := make([]int, 0, k)
 	for i := 0; i < k; i++ {
 		if last, ok := heap.Pop(f).(NumFreq); ok {
 			mostFrequent = append(mostFrequent, last.num)
@@ -57,26 +57,13 @@ type NumFreq = struct {
 }
 type NumFreqs []NumFreq
 
-func (f NumFreqs) Len() int {
-	return len(f)
-}
-
-func (f NumFreqs) Less(i, j int) bool {
-	return f[i].freq > f[j].freq
-}
-
-func (f NumFreqs) Swap(i, j int) {
-	f[i], f[j] = f[j], f[i]
-}
-
-func (f *NumFreqs) Push(x interface{}) {
-	*f = append(*f, x.(NumFreq))
-}
-
+func (f NumFreqs) Len() int            { return len(f) }
+func (f NumFreqs) Less(i, j int) bool  { return f[i].freq > f[j].freq }
+func (f NumFreqs) Swap(i, j int)       { f[i], f[j] = f[j], f[i] }
+func (f *NumFreqs) Push(x interface{}) { *f = append(*f, x.(NumFreq)) }
 func (f *NumFreqs) Pop() interface{} {
-	old, lastIdx := *f, len(*f)-1
-	last := old[lastIdx]
-	*f = old[:lastIdx]
+	last := (*f)[len(*f)-1]
+	*f = (*f)[:len(*f)-1]
 	return last
 }
 

@@ -84,6 +84,7 @@ import (
 )
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
 type Codec struct {
 }
 
@@ -99,7 +100,7 @@ func (codec *Codec) Encode(strs []string) string {
 
 // Decodes a single string to a list of strings.
 func (codec *Codec) Decode(strs string) []string {
-	output := make([]string, 0)
+	output := make([]string, 0, len(strs))
 	for l, ok := strToInt(strs); ok; l, ok = strToInt(strs) {
 		output = append(output, strs[2:2+l])
 		strs = strs[2+l:]
@@ -108,10 +109,10 @@ func (codec *Codec) Decode(strs string) []string {
 }
 
 func strToInt(str string) (int, bool) {
-	if len(str) < 2 {
-		return 0, false
-	} else if i, err := strconv.ParseInt(str[:2], 16, 32); err == nil {
-		return int(i), true
+	if len(str) >= 2 {
+		if i, err := strconv.ParseInt(str[:2], 16, 32); err == nil {
+			return int(i), true
+		}
 	}
 	return 0, false
 }
