@@ -61,13 +61,12 @@ package main
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func twoSum(nums []int, target int) []int {
-	if numsLen := len(nums); numsLen < 2 {
+	if len(nums) < 2 {
 		return []int{}
 	} else {
-		numToIndex := make(map[int]int, numsLen)
+		numToIndex := make(map[int]int, len(nums))
 		for idx, num := range nums {
-			complement := target - num
-			if cIdx, ok := numToIndex[complement]; ok {
+			if cIdx, ok := numToIndex[target-num]; ok {
 				return []int{cIdx, idx}
 			}
 			numToIndex[num] = idx

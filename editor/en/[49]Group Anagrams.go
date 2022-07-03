@@ -35,9 +35,7 @@ func groupAnagrams(strs []string) [][]string {
 	for _, str := range strs {
 		runes := sortRunes(str)
 		sort.Sort(runes)
-		sortedStr := string(runes)
-		vals := sortedToGroup[sortedStr]
-		sortedToGroup[sortedStr] = append(vals, str)
+		sortedToGroup[string(runes)] = append(sortedToGroup[string(runes)], str)
 	}
 	groups := make([][]string, 0, len(sortedToGroup))
 	for _, group := range sortedToGroup {

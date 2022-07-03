@@ -34,8 +34,8 @@ package main
 //leetcode submit region begin(Prohibit modification and deletion)
 func longestConsecutive(nums []int) int {
 	longestStreak := 0
-	if numsLen := len(nums); numsLen > 0 {
-		numToTrue := make(map[int]bool, numsLen)
+	if len(nums) > 0 {
+		numToTrue := make(map[int]bool, len(nums))
 		for _, num := range nums {
 			numToTrue[num] = true
 		}

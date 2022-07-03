@@ -61,14 +61,12 @@ func isValid(s string) bool {
 	return len(stack) == 0
 }
 func pop(stack *[]rune) rune {
-	if old := *stack; len(old) == 0 {
+	if len(*stack) == 0 {
 		return 0
-	} else {
-		lastIdx := len(old) - 1
-		last := old[lastIdx]
-		*stack = old[:lastIdx]
-		return last
 	}
+	last := (*stack)[len(*stack)-1]
+	*stack = (*stack)[:len(*stack)-1]
+	return last
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
