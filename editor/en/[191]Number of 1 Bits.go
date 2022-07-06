@@ -54,6 +54,9 @@
 package main
 
 //leetcode submit region begin(Prohibit modification and deletion)
+/*
+ *
+ */
 func hammingWeight(num uint32) int {
 	sum := 0
 	for ; num != 0; num &= num - 1 {

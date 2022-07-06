@@ -49,11 +49,11 @@ package main
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
-	  4 ^ (0 ^ 0) ^ (1 ^ 1) ^ (2 ^ 3) ^ (3 ^ 4)
-	= (4 ^ 4) ^ (0 ^ 0) ^ (1 ^ 1) ^ (3 ^ 3) ^ 2
-	= 0 ^ 0 ^ 0 ^ 0 ^ 2
-	= 2
-*/
+ *   4 ^ (0 ^ 0) ^ (1 ^ 1) ^ (2 ^ 3) ^ (3 ^ 4)
+ * = (4 ^ 4) ^ (0 ^ 0) ^ (1 ^ 1) ^ (3 ^ 3) ^ 2
+ * = 0 ^ 0 ^ 0 ^ 0 ^ 2
+ * = 2
+ */
 func missingNumber(nums []int) int {
 	missing := len(nums)
 	for i, num := range nums {

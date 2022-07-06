@@ -35,15 +35,15 @@ package main
 func longestConsecutive(nums []int) int {
 	longestStreak := 0
 	if len(nums) > 0 {
-		numToTrue := make(map[int]bool, len(nums))
+		m := make(map[int]bool, len(nums))
 		for _, num := range nums {
-			numToTrue[num] = true
+			m[num] = true
 		}
 
-		for num := range numToTrue {
-			if !numToTrue[num-1] {
+		for num := range m {
+			if !m[num-1] {
 				streak := 1
-				for i := num + 1; numToTrue[i]; i++ {
+				for i := num + 1; m[i]; i++ {
 					streak++
 				}
 				if streak > longestStreak {

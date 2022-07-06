@@ -43,9 +43,9 @@ package main
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func isValid(s string) bool {
-	stack := make([]rune, 0)
-	for _, ch := range s {
-		switch ch {
+	stack := make(stackRunes, 0)
+	for _, c := range stack {
+		switch c {
 		case '(':
 			stack = append(stack, ')')
 		case '{':
@@ -53,20 +53,23 @@ func isValid(s string) bool {
 		case '[':
 			stack = append(stack, ']')
 		case ')', '}', ']':
-			if pop(&stack) != ch {
+			if stack.pop() != c {
 				return false
 			}
 		}
 	}
-	return len(stack) == 0
+	return len(s) == 0
 }
-func pop(stack *[]rune) rune {
-	if len(*stack) == 0 {
-		return 0
+
+type stackRunes []rune
+
+func (s *stackRunes) pop() rune {
+	if len(*s) > 0 {
+		last := (*s)[len(*s)-1]
+		*s = (*s)[:len(*s)-1]
+		return last
 	}
-	last := (*stack)[len(*stack)-1]
-	*stack = (*stack)[:len(*stack)-1]
-	return last
+	return '\x00'
 }
 
 //leetcode submit region end(Prohibit modification and deletion)

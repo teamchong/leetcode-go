@@ -34,17 +34,17 @@ package main
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func productExceptSelf(nums []int) []int {
-	answer, r := make([]int, len(nums)), nums[len(nums)-1]
-	answer[0] = 1
+	output := make([]int, len(nums))
+	output[0] = 1
 	for i := 1; i < len(nums); i++ {
-		answer[i] = answer[i-1] * nums[i-1]
+		output[i] = output[i-1] * nums[i-1]
 	}
+	right := nums[len(nums)-1]
 	for i := len(nums) - 2; i >= 0; i-- {
-		answer[i] *= r
-		r *= nums[i]
+		output[i] *= right
+		right *= nums[i]
 	}
-
-	return answer
+	return output
 }
 
 //leetcode submit region end(Prohibit modification and deletion)

@@ -47,6 +47,12 @@
 
 package main
 
+/*
+ * masks
+ * C: 1100, 3: 0011, A: 1010, 5: 0101
+ * logic
+ * 123456789
+ */
 //leetcode submit region begin(Prohibit modification and deletion)
 func reverseBits(num uint32) uint32 {
 	num = (num >> 16) | (num << 16)

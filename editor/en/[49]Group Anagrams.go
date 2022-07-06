@@ -31,14 +31,14 @@ package main
 import "sort"
 
 func groupAnagrams(strs []string) [][]string {
-	sortedToGroup := make(map[string][]string, len(strs))
+	m := make(map[string][]string)
 	for _, str := range strs {
-		runes := sortRunes(str)
-		sort.Sort(runes)
-		sortedToGroup[string(runes)] = append(sortedToGroup[string(runes)], str)
+		r := sortRunes(str)
+		sort.Sort(r)
+		m[string(r)] = append(m[string(r)], str)
 	}
-	groups := make([][]string, 0, len(sortedToGroup))
-	for _, group := range sortedToGroup {
+	groups := make([][]string, 0)
+	for _, group := range m {
 		groups = append(groups, group)
 	}
 	return groups
