@@ -57,20 +57,19 @@ import (
 
 func alienOrder(words []string) string {
 	// Step 0: Create data structures and find all unique letters.
-	adjList := make(map[rune][]rune)
+	adjacencyRunes := make(map[rune][]rune)
 	counts := make(map[rune]int)
 
 	for _, word := range words {
 		for _, c := range word {
 			counts[c] = 0
-			adjList[c] = make([]rune, 0)
+			adjacencyRunes[c] = make([]rune, 0)
 		}
 	}
 
 	// Step 1: Find all edges.
 	for i, word1 := range words[:len(words)-1] {
-		word2 := words[i+1]
-		len1, len2 := len(word1), len(word2)
+		word2, len1, len2 := words[i+1], len(word1), len(words[i+1])
 
 		// Check that word2 is not a prefix of word1.
 		if len1 > len2 && strings.HasPrefix(word1, word2) {
@@ -78,13 +77,9 @@ func alienOrder(words []string) string {
 		}
 
 		// Find the first non match and insert the corresponding relation.
-		var min int
-		if min = len1; min > len2 {
-			min = len2
-		}
-		for j, ch1 := range word1[:min] {
+		for j, ch1 := range word1[:min(len1, len2)] {
 			if ch2 := rune(word2[j]); ch1 != ch2 {
-				adjList[ch1] = append(adjList[ch1], ch2)
+				adjacencyRunes[ch1] = append(adjacencyRunes[ch1], ch2)
 				counts[ch2]++
 				break
 			}
@@ -92,19 +87,19 @@ func alienOrder(words []string) string {
 	}
 
 	// Step 2: Breadth-first search.
-	queue := make(queue, 0)
+	runeQueue := make(queue, 0)
 	for c, count := range counts {
 		if count == 0 {
-			queue.enqueue(c)
+			runeQueue.enqueue(c)
 		}
 	}
 	var sb strings.Builder
-	for len(queue) > 0 {
-		c := queue.dequeue()
+	for len(runeQueue) > 0 {
+		c := runeQueue.dequeue()
 		sb.WriteRune(c)
-		for _, next := range adjList[c] {
+		for _, next := range adjacencyRunes[c] {
 			if counts[next]--; counts[next] == 0 {
-				queue.enqueue(next)
+				runeQueue.enqueue(next)
 			}
 		}
 	}
@@ -124,6 +119,13 @@ func (s *queue) dequeue() rune {
 	c := (*s)[0]
 	*s = (*s)[1:]
 	return c
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
