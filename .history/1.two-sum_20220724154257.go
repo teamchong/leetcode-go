@@ -11,7 +11,7 @@ package main
 // we've added the second element, we check if the table already contains the complement we're looking
 // for. If it does, we've found a solution and we return immediately
 func twoSum(nums []int, target int) []int {
-	complements := make(map[int]int, len(nums))
+	complements := make(map[int]int)
 	for idx, num := range nums {
 		if complementIdx, ok := complements[target-num]; ok {
 			return []int{complementIdx, idx}

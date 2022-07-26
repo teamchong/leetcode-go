@@ -8,10 +8,12 @@
 use std::collections::HashMap;
 
 // Constraints:
+
 // 2 <= nums.length <= 104
 // -109 <= nums[i] <= 109
 // -109 <= target <= 109
 // Only one valid answer exists.
+
 impl Solution {
     /// We iterate through the array, and for each element, we check if the complement of the element
     /// exists in the hashmap. If it does, we return the indices of the element and its complement. If

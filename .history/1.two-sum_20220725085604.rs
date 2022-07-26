@@ -7,11 +7,6 @@
 // @lc code=start
 use std::collections::HashMap;
 
-// Constraints:
-// 2 <= nums.length <= 104
-// -109 <= nums[i] <= 109
-// -109 <= target <= 109
-// Only one valid answer exists.
 impl Solution {
     /// We iterate through the array, and for each element, we check if the complement of the element
     /// exists in the hashmap. If it does, we return the indices of the element and its complement. If
@@ -26,10 +21,10 @@ impl Solution {
     /// 
     /// A vector of two integers.
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-        let mut complements = HashMap::with_capacity(nums.len());
+        let mut complements: HashMap<i32, i32> = &HashMap::with_capacity(nums.len());
         for (idx, num) in nums.iter().enumerate() {
-            if let Some(&complementIdx) = complements.get(&(target - num)) {
-                return vec![complementIdx, idx as i32];
+            if let Some(complementIdx) = complements.get(&(target - num)) {
+                return vec![*complementIdx, idx as i32];
             }
             complements.insert(*num, idx as i32);
         }

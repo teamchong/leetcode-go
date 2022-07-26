@@ -20,10 +20,10 @@ impl Solution {
         if x % 10 == 0 && x != 0 {
             false
         } else {
-            let (mut reverted, mut x) = (0, x);
+            let (mut reverted, mut x) = (&0, &x);
             while x > reverted {
-                reverted = reverted * 10 + x % 10;
-                x /= 10;
+                reverted = &(reverted * 10 + x % 10);
+                x /= &10;
             }
             x == reverted || x == reverted / 10
         }

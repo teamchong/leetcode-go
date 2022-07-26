@@ -22,8 +22,7 @@ impl Solution {
         } else {
             let (mut reverted, mut x) = (0, x);
             while x > reverted {
-                reverted = reverted * 10 + x % 10;
-                x /= 10;
+                (reverted, x) = (reverted * 10 + x % 10, x / 10);
             }
             x == reverted || x == reverted / 10
         }
