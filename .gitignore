@@ -95,3 +95,8 @@ fabric.properties
 
 # Ignore LeetCode solutions
 editor/**/solution/
+
+
+# Added by cargo
+
+/target

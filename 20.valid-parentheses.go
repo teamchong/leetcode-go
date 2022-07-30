@@ -34,7 +34,7 @@ type Stack []rune
 
 // A method that takes a pointer to a Stack and a rune value. It appends the rune value to the stack
 // and returns the rune value.
-func (s *Stack) push(val rune) rune { *s = append(*s, val) }
+func (s *Stack) push(val rune) { *s = append(*s, val) }
 
 // Popping the last element of the stack.
 func (s *Stack) pop() rune {

@@ -26,7 +26,7 @@ impl Solution {
     /// 
     /// A vector of two integers.
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-        let mut complements = HashMap::with_capacity(nums.len());
+        let mut complements = HashMap::with_capacity(nums.len() - 1);
         for (idx, num) in nums.iter().enumerate() {
             if let Some(&complementIdx) = complements.get(&(target - num)) {
                 return vec![complementIdx, idx as i32];
